@@ -10,7 +10,7 @@ namespace PM2Examen2Grupo1
         {
             InitializeComponent();
 
-            MainPage = new MainPage();
+            MainPage = new Views.ListViews();
         }
 
         protected override void OnStart()
