@@ -19,7 +19,7 @@
                        BackgroundColor="#2D90F9"
                        CornerRadius="25"
                         HorizontalOptions="Start"
-                        Clicked="Button_Clicked"
+                        
                                  />
             </Grid>
 
@@ -35,7 +35,7 @@
             <StackLayout Grid.Row="0">
 
                 <ListView x:Name="listSites" 
-                      ItemTapped="listSites_ItemTapped"
+                     
                       >
 
                     <ListView.ItemTemplate>
@@ -75,7 +75,7 @@
                             CornerRadius="25"
                             Grid.Row="0"
                             HeightRequest="40"
-                            Clicked="btnDelete_Clicked"
+                           
                             />
 
                     <Button x:Name="btnViewMapa"
@@ -86,7 +86,7 @@
                             CornerRadius="25"
                             Grid.Row="1"
                             HeightRequest="40"
-                            Clicked="btnViewMapa_Clicked"
+                            
                             />
 
                     <Button x:Name="btnViewListen"
@@ -97,7 +97,7 @@
                             Grid.Column="1"
                             Grid.Row="1"
                             HeightRequest="40"
-                            Clicked="btnViewListen_Clicked"
+                            
                             />
                 </Grid>
 
