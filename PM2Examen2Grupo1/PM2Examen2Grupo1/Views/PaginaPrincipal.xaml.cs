@@ -16,5 +16,10 @@ namespace PM2Examen2Grupo1.Views
 		{
 			InitializeComponent ();
 		}
-	}
+
+        private void btnfirmar_Clicked(object sender, EventArgs e)
+        {
+
+        }
+    }
 }
