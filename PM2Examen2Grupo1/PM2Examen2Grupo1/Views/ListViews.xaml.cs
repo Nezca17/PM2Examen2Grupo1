@@ -16,5 +16,25 @@ namespace PM2Examen2Grupo1.Views
         {
             InitializeComponent();
         }
+
+        private void Eliminar_Clicked(object sender, EventArgs e)
+        {
+            // Implementa el código para eliminar aquí
+        }
+
+        private void Actualizar_Clicked(object sender, EventArgs e)
+        {
+            // Implementa el código para actualizar aquí
+        }
+
+        private void VerMapa_Clicked(object sender, EventArgs e)
+        {
+            // Implementa el código para ver el mapa aquí
+        }
+
+        private void EscucharAudio_Clicked(object sender, EventArgs e)
+        {
+            // Implementa el código para escuchar el audio aquí
+        }
     }
 }
