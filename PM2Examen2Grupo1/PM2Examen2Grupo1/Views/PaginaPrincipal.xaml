@@ -1,12 +1,46 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="PM2Examen2Grupo1.Views.PaginaPrincipal">
+             x:Class="PM2Examen2Grupo1.Views.PaginaPrincipal"
+             xmlns:forms="clr-namespace:SignaturePad.Forms;assembly=SignaturePad.Forms">
+
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
+
+        <ScrollView>
+
+            <StackLayout Margin="5">
+                <StackLayout>
+                    <Frame BackgroundColor="White" Padding="24" CornerRadius="10">
+                        <Label Text="Examen2pGrupo1" HorizontalTextAlignment="Center" TextColor="Black" FontSize="36" Margin="5"/>
+                    </Frame>
+
+                </StackLayout>
+
+                <StackLayout>
+                    <Button Text="Firmar" x:Name="btnfirmar" Clicked="btnfirmar_Clicked"  BackgroundColor="RoyalBlue" Margin="5"/>
+                    <Image  x:Name="foto" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" HeightRequest="300"/>
+                </StackLayout>
+
+                <StackLayout HorizontalOptions="Center" Margin="5">
+                    <forms:SignaturePadView 
+                    x:Name="PadView"
+                    StrokeWidth="1"
+                    StrokeColor="Navy"
+                    HeightRequest="100"
+                    VerticalOptions="Center"
+                    HorizontalOptions="CenterAndExpand"
+                    IsVisible="false"/>
+
+                </StackLayout>
+
+                <StackLayout Orientation="Vertical">
+                    <Label Text="Latitud actual:" TextColor="Navy" FontSize="14" Margin="5"></Label>
+                    <Entry x:Name="latitud" IsReadOnly="True" TextColor="Navy" FontSize="16" Margin="5" HorizontalTextAlignment="Start" BackgroundColor="LightSteelBlue"></Entry>
+                    <Label Text="Longitud actual:" TextColor="Navy" FontSize="14" Margin="5"></Label>
+                    <Entry x:Name="longitud" IsReadOnly="True" TextColor="Navy" FontSize="16" Margin="5" HorizontalTextAlignment="Start" BackgroundColor="LightSteelBlue"></Entry>
+                </StackLayout>
+
+            </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>
