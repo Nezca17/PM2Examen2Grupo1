@@ -110,10 +110,7 @@ namespace PM2Examen2Grupo1.Views
 
         private void detenervoz_Clicked(object sender, EventArgs e)
         {
-            audioRecorder.StopRecording();
-            ondaespacio.Text = "--------------------------";
-            grabarvoz.IsEnabled = true;
-            detenervoz.IsEnabled = false;
+         
         }
 
         private void btnsalvar_Clicked(object sender, EventArgs e)
