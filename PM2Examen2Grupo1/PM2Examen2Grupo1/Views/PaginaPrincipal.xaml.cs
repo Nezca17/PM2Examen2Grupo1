@@ -100,7 +100,7 @@ namespace PM2Examen2Grupo1.Views
             }
 
 
-        private void grabarvoz_Clicked(object sender, EventArgs e)
+        private async Task grabarvoz_ClickedAsync(object sender, EventArgs e)
         {
             try
             {
@@ -123,7 +123,7 @@ namespace PM2Examen2Grupo1.Views
 
                     txtMessage.TextColor = Color.Red;
 
-                    btnGrabar.Text = "Grabar audio";
+                    grabarvoz.Text = "Grabar audio";
 
                     reproducir = true;
                 }
@@ -136,7 +136,7 @@ namespace PM2Examen2Grupo1.Views
 
                     txtMessage.TextColor = Color.Green;
 
-                    btnGrabar.Text = "Dejar de Grabar";
+                    grabarvoz.Text = "Dejar de Grabar";
 
                     //reproducir = false;
                 }
