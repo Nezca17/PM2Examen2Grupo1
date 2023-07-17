@@ -46,8 +46,6 @@ namespace PM2Examen2Grupo1.Views
 
         }
 
-      
-
         private async void Localizar()
         {
             try
