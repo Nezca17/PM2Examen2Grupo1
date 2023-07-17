@@ -49,15 +49,7 @@
                 </StackLayout>
 
                 <StackLayout>
-                    <Label Text="Grabar nota de voz" TextColor="Black" FontSize="14" Margin="5"/>
-
-                    <Frame CornerRadius="10" Padding="0" HasShadow="False" BackgroundColor="#8eaa94" Margin="5">
-                        <Label x:Name="ondaespacio"
-                           Text="--------------------------"
-                           HorizontalTextAlignment="Center"
-                           VerticalTextAlignment="Center"
-                           TextColor="Black"/>
-                    </Frame>
+               
 
                     <StackLayout>
                         <Label x:Name="TxtGrabacion"

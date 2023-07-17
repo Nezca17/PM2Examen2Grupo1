@@ -102,7 +102,7 @@ namespace PM2Examen2Grupo1.Views
             }
 
 
-        private async Task grabarvoz_ClickedAsync(object sender, EventArgs e)
+        private async void grabarvoz_Clicked(object sender, EventArgs e)
         {
             try
             {
@@ -140,7 +140,7 @@ namespace PM2Examen2Grupo1.Views
 
                     btngrabarvoz.Text = "Dejar de Grabar";
 
-                    //reproducir = false;
+                    reproducir = false;
                 }
             }
             catch (Exception ex)
@@ -164,11 +164,6 @@ namespace PM2Examen2Grupo1.Views
         {
             await Navigation.PushAsync(new ListViews());
             
-        }
-
-        private void grabarvoz_Clicked(object sender, EventArgs e)
-        {
-
         }
 
         private async void Localizar()
