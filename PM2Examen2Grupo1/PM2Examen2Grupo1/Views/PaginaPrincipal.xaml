@@ -1,12 +1,77 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="PM2Examen2Grupo1.Views.PaginaPrincipal">
+             x:Class="PM2Examen2Grupo1.Views.PaginaPrincipal"
+             BackgroundColor="#e2ddd9"
+             xmlns:forms="clr-namespace:SignaturePad.Forms;assembly=SignaturePad.Forms">
+
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
+
+        <ScrollView>
+
+            <StackLayout Margin="5">
+                <StackLayout>
+                    <Frame BackgroundColor="White" Padding="14" CornerRadius="10">
+                        <Label Text="Examen2pGrupo1" HorizontalTextAlignment="Center" TextColor="Black" FontSize="26" Margin="5"/>
+                    </Frame>
+
+                </StackLayout>
+
+                <StackLayout HorizontalOptions="Center" Margin="5" BackgroundColor="White">
+                    <forms:SignaturePadView 
+                    x:Name="PadView"
+                    BackgroundColor="White"
+                    StrokeWidth="1"
+                    StrokeColor="Black"
+                    HeightRequest="300"
+                    VerticalOptions="Center"
+                    HorizontalOptions="CenterAndExpand"
+                    IsVisible="true"/>
+
+                    <Button Text="Firmar" x:Name="btnfirmar" Clicked="btnfirmar_Clicked"  BackgroundColor="#8eaa94" Margin="5"/>
+                </StackLayout>
+
+                <StackLayout>
+                    <StackLayout Orientation="Vertical">
+                        <Label Text="Latitud actual:" TextColor="Black" FontSize="14" Margin="5"></Label>
+                        <Entry x:Name="latitud" IsReadOnly="True" TextColor="Black" FontSize="16" Margin="5" HorizontalTextAlignment="Start" BackgroundColor="#8eaa94"></Entry>
+                        <Label Text="Longitud actual:" TextColor="Black" FontSize="14" Margin="5"></Label>
+                        <Entry x:Name="longitud" IsReadOnly="True" TextColor="Black" FontSize="16" Margin="5" HorizontalTextAlignment="Start" BackgroundColor="#8eaa94"></Entry>
+                    </StackLayout>
+
+                    <StackLayout>
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="Describa la ubicación: " TextColor="Black" FontSize="14" Margin="5"></Label>
+                        </StackLayout>
+                        <Editor x:Name="descripcion" HeightRequest="80" TextColor="Black" FontSize="16" Margin="5" BackgroundColor="#8eaa94"></Editor>
+                    </StackLayout>
+                </StackLayout>
+
+                <StackLayout>
+                    <Label Text="Grabar nota de voz" TextColor="Black" FontSize="14" Margin="5"/>
+
+                    <Frame CornerRadius="10" Padding="0" HasShadow="False" BackgroundColor="#8eaa94" Margin="5">
+                        <Label x:Name="ondaespacio"
+                           Text="--------------------------"
+                           HorizontalTextAlignment="Center"
+                           VerticalTextAlignment="Center"
+                           TextColor="Black"/>
+                    </Frame>
+
+                    <StackLayout>
+                        <Button x:Name="grabarvoz" Clicked="grabarvoz_Clicked" Text="Grabar" BackgroundColor="#867e6d" Margin="5" CornerRadius="10" IsVisible="True"/>
+                        <Button x:Name="detenervoz" Clicked="detenervoz_Clicked" Text="Detener" BackgroundColor="RoyalBlue" Margin="5" CornerRadius="10" IsVisible="False"/>
+                    </StackLayout>
+                </StackLayout>
+
+                <StackLayout Orientation="Horizontal">
+                    <Button x:Name="btnsalvar" Clicked="btnsalvar_Clicked" Text="Guardar" BackgroundColor="#867e6d" Margin="5" CornerRadius="10" HorizontalOptions="FillAndExpand"/>
+
+                    <Button IsVisible="true" x:Name="btnubicaciones" Clicked="btnubicaciones_Clicked" Text="Ubicaciones" BackgroundColor="#867e6d" Margin="5" CornerRadius="10" HorizontalOptions="FillAndExpand"/>
+
+                </StackLayout>
+
+            </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>

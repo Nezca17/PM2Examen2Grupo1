@@ -36,5 +36,32 @@ namespace PM2Examen2Grupo1.Views
         {
             // Implementa el código para escuchar el audio aquí
         }
+         
+        private void Button_Clicked (object sender, EventArgs e)
+        {
+            
+        }
+
+        private void btnDelete_Clicked (object sender, EventArgs e)
+        {
+
+        }
+         private void btnViewMapa_Clicked(Object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnViewListen_Clicked(Object sender, EventArgs e)
+        {
+
+        }
+
+        private void listSites_ItemTapped (object sender, ItemTappedEventArgs e)
+        {
+
+        }
+
     }
+
+    
 }
