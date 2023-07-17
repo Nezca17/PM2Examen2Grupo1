@@ -1,4 +1,5 @@
 ﻿using Plugin.Media.Abstractions;
+using Acr.UserDialogs;
 using SignaturePad.Forms;
 using System;
 using System.Collections.Generic;
@@ -119,9 +120,9 @@ namespace PM2Examen2Grupo1.Views
 
                     audioPlayer.Play(audioRecorderService.GetAudioFilePath());
 
-                    txtMessage.Text = "No esta grabando";
+                    TxtGrabacion.Text = "No esta grabando";
 
-                    txtMessage.TextColor = Color.Red;
+                    TxtGrabacion.TextColor = Color.Red;
 
                     grabarvoz.Text = "Grabar audio";
 
@@ -132,9 +133,9 @@ namespace PM2Examen2Grupo1.Views
                     await audioRecorderService.StartRecording();
 
 
-                    txtMessage.Text = "Esta grabando";
+                    TxtGrabacion.Text = "Esta grabando";
 
-                    txtMessage.TextColor = Color.Green;
+                    TxtGrabacion.TextColor = Color.Green;
 
                     grabarvoz.Text = "Dejar de Grabar";
 
@@ -159,6 +160,11 @@ namespace PM2Examen2Grupo1.Views
         }
 
         private void btnubicaciones_Clicked(object sender, EventArgs e)
+        {
+
+        }
+
+        private void grabarvoz_Clicked(object sender, EventArgs e)
         {
 
         }

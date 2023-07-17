@@ -60,6 +60,10 @@
                     </Frame>
 
                     <StackLayout>
+                        <Label x:Name="TxtGrabacion"
+                           HorizontalTextAlignment="Center"
+                           VerticalTextAlignment="Center"
+                           TextColor="Black"/>
                         <Button x:Name="grabarvoz" Clicked="grabarvoz_Clicked" Text="Grabar" BackgroundColor="#867e6d" Margin="5" CornerRadius="10" IsVisible="True"/>
                         <Button x:Name="detenervoz" Clicked="detenervoz_Clicked" Text="Detener" BackgroundColor="RoyalBlue" Margin="5" CornerRadius="10" IsVisible="False"/>
                     </StackLayout>
