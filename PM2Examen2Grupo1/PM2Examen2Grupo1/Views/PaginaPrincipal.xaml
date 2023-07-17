@@ -17,42 +17,40 @@
 
                 </StackLayout>
 
-                <StackLayout>
-                    <Button Text="Firmar" x:Name="btnfirmar" Clicked="btnfirmar_Clicked"  BackgroundColor="#8eaa94" Margin="5"/>
-                    <Image  x:Name="foto" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" HeightRequest="300"/>
-                </StackLayout>
-
                 <StackLayout HorizontalOptions="Center" Margin="5" BackgroundColor="White">
                     <forms:SignaturePadView 
                     x:Name="PadView"
+                    BackgroundColor="White"
                     StrokeWidth="1"
                     StrokeColor="Black"
-                    HeightRequest="100"
+                    HeightRequest="300"
                     VerticalOptions="Center"
                     HorizontalOptions="CenterAndExpand"
-                    IsVisible="false"/>
+                    IsVisible="true"/>
+
+                    <Button Text="Firmar" x:Name="btnfirmar" Clicked="btnfirmar_Clicked"  BackgroundColor="#8eaa94" Margin="5"/>
                 </StackLayout>
 
                 <StackLayout>
                     <StackLayout Orientation="Vertical">
                         <Label Text="Latitud actual:" TextColor="Black" FontSize="14" Margin="5"></Label>
-                        <Entry x:Name="latitud" IsReadOnly="True" TextColor="Black" FontSize="16" Margin="5" HorizontalTextAlignment="Start" BackgroundColor="#867e6d"></Entry>
+                        <Entry x:Name="latitud" IsReadOnly="True" TextColor="Black" FontSize="16" Margin="5" HorizontalTextAlignment="Start" BackgroundColor="#8eaa94"></Entry>
                         <Label Text="Longitud actual:" TextColor="Black" FontSize="14" Margin="5"></Label>
-                        <Entry x:Name="longitud" IsReadOnly="True" TextColor="Black" FontSize="16" Margin="5" HorizontalTextAlignment="Start" BackgroundColor="#867e6d"></Entry>
+                        <Entry x:Name="longitud" IsReadOnly="True" TextColor="Black" FontSize="16" Margin="5" HorizontalTextAlignment="Start" BackgroundColor="#8eaa94"></Entry>
                     </StackLayout>
 
                     <StackLayout>
                         <StackLayout Orientation="Horizontal">
                             <Label Text="Describa la ubicación: " TextColor="Black" FontSize="14" Margin="5"></Label>
                         </StackLayout>
-                        <Editor x:Name="descripcion" HeightRequest="80" TextColor="Black" FontSize="16" Margin="5" BackgroundColor="#867e6d"></Editor>
+                        <Editor x:Name="descripcion" HeightRequest="80" TextColor="Black" FontSize="16" Margin="5" BackgroundColor="#8eaa94"></Editor>
                     </StackLayout>
                 </StackLayout>
 
                 <StackLayout>
                     <Label Text="Grabar nota de voz" TextColor="Black" FontSize="14" Margin="5"/>
 
-                    <Frame CornerRadius="10" Padding="0" HasShadow="False" BackgroundColor="#867e6d" Margin="5">
+                    <Frame CornerRadius="10" Padding="0" HasShadow="False" BackgroundColor="#8eaa94" Margin="5">
                         <Label x:Name="ondaespacio"
                            Text="--------------------------"
                            HorizontalTextAlignment="Center"
@@ -61,15 +59,15 @@
                     </Frame>
 
                     <StackLayout>
-                        <Button x:Name="grabarvoz" Clicked="grabarvoz_Clicked" Text="Grabar" BackgroundColor="#8eaa94" Margin="5" CornerRadius="10" IsVisible="True"/>
+                        <Button x:Name="grabarvoz" Clicked="grabarvoz_Clicked" Text="Grabar" BackgroundColor="#867e6d" Margin="5" CornerRadius="10" IsVisible="True"/>
                         <Button x:Name="detenervoz" Clicked="detenervoz_Clicked" Text="Detener" BackgroundColor="RoyalBlue" Margin="5" CornerRadius="10" IsVisible="False"/>
                     </StackLayout>
                 </StackLayout>
 
                 <StackLayout Orientation="Horizontal">
-                    <Button x:Name="btnsalvar" Clicked="btnsalvar_Clicked" Text="Guardar" BackgroundColor="#8eaa94" Margin="5" CornerRadius="10" HorizontalOptions="FillAndExpand"/>
+                    <Button x:Name="btnsalvar" Clicked="btnsalvar_Clicked" Text="Guardar" BackgroundColor="#867e6d" Margin="5" CornerRadius="10" HorizontalOptions="FillAndExpand"/>
 
-                    <Button IsVisible="true" x:Name="btnubicaciones" Clicked="btnubicaciones_Clicked" Text="Ubicaciones" BackgroundColor="#8eaa94" Margin="5" CornerRadius="10" HorizontalOptions="FillAndExpand"/>
+                    <Button IsVisible="true" x:Name="btnubicaciones" Clicked="btnubicaciones_Clicked" Text="Ubicaciones" BackgroundColor="#867e6d" Margin="5" CornerRadius="10" HorizontalOptions="FillAndExpand"/>
 
                 </StackLayout>
 
