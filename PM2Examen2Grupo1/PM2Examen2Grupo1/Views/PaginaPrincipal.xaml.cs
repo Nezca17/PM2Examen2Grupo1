@@ -41,8 +41,9 @@ namespace PM2Examen2Grupo1.Views
                 LocalizameCommand = new Command(Localizar);
 
                 ObjLocalizar = new LocalizacionModel1();
+                Localizar();
 
-            }
+        }
         //   public String Getimage64() 
         //{
         // if (firma != null)
@@ -161,7 +162,7 @@ namespace PM2Examen2Grupo1.Views
 
         private void btnubicaciones_Clicked(object sender, EventArgs e)
         {
-            Localizar();
+           
         }
 
         private void grabarvoz_Clicked(object sender, EventArgs e)
