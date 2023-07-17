@@ -42,24 +42,36 @@ namespace PM2Examen2Grupo1.Views
                 ObjLocalizar = new LocalizacionModel1();
 
             }
-            //   public String Getimage64() 
-            //{
-            // if (firma != null)
-            //{ 
-            //using (MemoryStream memory = new MemoryStream))
-            //  {
-            //  Stream stream = firma.GetStream();
-            //Stream.CopyTo(memory);
-            //byte[] fotobyte = memory.ToArray();
+        //   public String Getimage64() 
+        //{
+        // if (firma != null)
+        //{ 
+        //using (MemoryStream memory = new MemoryStream))
+        //  {
+        //  Stream stream = firma.GetStream();
+        //Stream.CopyTo(memory);
+        //byte[] fotobyte = memory.ToArray();
 
-            //  String Base64 = Convert.ToBase64String(fotobyte);
-            //  return Base64;
-            // }
-            //}
-            // return null;
-            // }
-
-            private void AudioCaptured(byte[] audioData)
+        //  String Base64 = Convert.ToBase64String(fotobyte);
+        //  return Base64;
+        // }
+        //}
+        // return null;
+        // }
+        public byte[] ReadFully(Stream input)
+        {
+            byte[] buffer = new byte[16 * 1024];
+            using (MemoryStream ms = new MemoryStream())
+            {
+                int read;
+                while ((read = input.Read(buffer, 0, buffer.Length)) > 0)
+                {
+                    ms.Write(buffer, 0, read);
+                }
+                return ms.ToArray();
+            }
+        }
+        private void AudioCaptured(byte[] audioData)
             {
                 // Aquí puedes procesar los datos de audio capturados
                 // El parámetro 'audioData' contiene los datos de audio en formato de bytes
@@ -75,6 +87,7 @@ namespace PM2Examen2Grupo1.Views
             {
 
             }
+
             private Byte[] ConvertAudioToByteArray()
             {
                 Stream audioFile = audioRecorderService.GetAudioFileStream();
