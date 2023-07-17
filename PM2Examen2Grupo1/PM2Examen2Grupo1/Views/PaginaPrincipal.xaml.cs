@@ -22,7 +22,6 @@ namespace PM2Examen2Grupo1.Views
     {
 
         private AudioRecorderService audioRecorderService = new AudioRecorderService()
-
         {
             StopRecordingOnSilence = false,
             StopRecordingAfterTimeout = false
@@ -32,67 +31,60 @@ namespace PM2Examen2Grupo1.Views
         private bool reproducir = false;
 
 
-        public PaginaPrincipal()
-        {
-            InitializeComponent();
-      
-        }
-
-        private void AudioCaptured(byte[] audioData)
-        {
-            // Aquí puedes procesar los datos de audio capturados
-            // El parámetro 'audioData' contiene los datos de audio en formato de bytes
-
-            // Ejemplo: Guardar los datos de audio en un archivo WAV
-            string filePath = "audio.wav";
-            System.IO.File.WriteAllBytes(filePath, audioData);
-
-            Console.WriteLine("Audio guardado en: " + filePath);
-        }
-    [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class PaginaPrincipal : ContentPage
-    {
         public Command LocalizameCommand { get; set; }
         private LocalizacionModel1 ObjLocalizar;
-        public PaginaPrincipal()
-        {
-            InitializeComponent();
-            LocalizameCommand = new Command(Localizar);
 
-            ObjLocalizar = new LocalizacionModel1();
+            public PaginaPrincipal()
+            {
+                InitializeComponent();
+                LocalizameCommand = new Command(Localizar);
 
-        }
-        //   public String Getimage64() 
-        //{
-        // if (firma != null)
-        //{ 
-        //using (MemoryStream memory = new MemoryStream))
-        //  {
-        //  Stream stream = firma.GetStream();
-        //Stream.CopyTo(memory);
-        //byte[] fotobyte = memory.ToArray();
+                ObjLocalizar = new LocalizacionModel1();
 
-        //  String Base64 = Convert.ToBase64String(fotobyte);
-        //  return Base64;
-        // }
-        //}
-        // return null;
-        // }
+            }
+            //   public String Getimage64() 
+            //{
+            // if (firma != null)
+            //{ 
+            //using (MemoryStream memory = new MemoryStream))
+            //  {
+            //  Stream stream = firma.GetStream();
+            //Stream.CopyTo(memory);
+            //byte[] fotobyte = memory.ToArray();
 
-        private async void btnfirmar_Clicked(object sender, EventArgs e)
-        {
+            //  String Base64 = Convert.ToBase64String(fotobyte);
+            //  return Base64;
+            // }
+            //}
+            // return null;
+            // }
 
-        }
-        private Byte[] ConvertAudioToByteArray()
-        {
-            Stream audioFile = audioRecorderService.GetAudioFileStream();
+            private void AudioCaptured(byte[] audioData)
+            {
+                // Aquí puedes procesar los datos de audio capturados
+                // El parámetro 'audioData' contiene los datos de audio en formato de bytes
 
-            //var mStream = new MemoryStream(File.ReadAllBytes(audioRecorderService.GetAudioFilePath()));
-            //var mStream = (MemoryStream)audioFile;
+                // Ejemplo: Guardar los datos de audio en un archivo WAV
+                string filePath = "audio.wav";
+                System.IO.File.WriteAllBytes(filePath, audioData);
 
-            Byte[] bytes = ReadFully(audioFile);
-            return bytes;
-        }
+                Console.WriteLine("Audio guardado en: " + filePath);
+            }
+
+            private async void btnfirmar_Clicked(object sender, EventArgs e)
+            {
+
+            }
+            private Byte[] ConvertAudioToByteArray()
+            {
+                Stream audioFile = audioRecorderService.GetAudioFileStream();
+
+                //var mStream = new MemoryStream(File.ReadAllBytes(audioRecorderService.GetAudioFilePath()));
+                //var mStream = (MemoryStream)audioFile;
+
+                Byte[] bytes = ReadFully(audioFile);
+                return bytes;
+            }
 
 
         private void grabarvoz_Clicked(object sender, EventArgs e)
