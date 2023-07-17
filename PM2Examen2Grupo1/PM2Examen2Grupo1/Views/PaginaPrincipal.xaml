@@ -13,6 +13,7 @@
                 <StackLayout>
                     <Frame BackgroundColor="White" Padding="14" CornerRadius="10">
                         <Label Text="Examen2pGrupo1" HorizontalTextAlignment="Center" TextColor="Black" FontSize="26" Margin="5"/>
+                        
                     </Frame>
 
                 </StackLayout>
