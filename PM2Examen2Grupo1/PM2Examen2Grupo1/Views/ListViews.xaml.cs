@@ -17,6 +17,11 @@ namespace PM2Examen2Grupo1.Views
             InitializeComponent();
         }
 
+        private void BtnAtras(object sender, EventArgs e)
+        {
+            OnBackButtonPressed();
+        }
+
         private void Eliminar_Clicked(object sender, EventArgs e)
         {
             // Implementa el código para eliminar aquí

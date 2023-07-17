@@ -19,7 +19,7 @@
                        BackgroundColor="#2D90F9"
                        CornerRadius="25"
                         HorizontalOptions="Start"
-                        
+                        Clicked="BtnAtras"
                                  />
             </Grid>
 
