@@ -160,9 +160,10 @@ namespace PM2Examen2Grupo1.Views
 
         }
 
-        private void btnubicaciones_Clicked(object sender, EventArgs e)
+        private async void btnubicaciones_Clicked(object sender, EventArgs e)
         {
-           
+            await Navigation.PushAsync(new ListViews());
+            
         }
 
         private void grabarvoz_Clicked(object sender, EventArgs e)
