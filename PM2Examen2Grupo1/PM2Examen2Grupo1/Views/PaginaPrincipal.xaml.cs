@@ -161,7 +161,7 @@ namespace PM2Examen2Grupo1.Views
 
         private void btnubicaciones_Clicked(object sender, EventArgs e)
         {
-
+            Localizar();
         }
 
         private void grabarvoz_Clicked(object sender, EventArgs e)
