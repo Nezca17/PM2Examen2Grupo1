@@ -9,24 +9,29 @@ using System.Threading.Tasks;
 using PM2Examen2Grupo1.Models;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using Xamarin.Essentials;
 
 namespace PM2Examen2Grupo1.Views
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class PaginaPrincipal : ContentPage
 	{
-		public PaginaPrincipal ()
-		{
-			InitializeComponent ();
+        public Command LocalizameCommand { get; set; }
+        private LocalizacionModel1 ObjLocalizar;
+        public PaginaPrincipal()
+        {
+            InitializeComponent();
             LocalizameCommand = new Command(Localizar);
-        }
 
-       // public String Getimage64() 
-        //{
-           // if (firma != null)
-            //{ 
-              //using (MemoryStream memory = new MemoryStream))
-               // {
+            ObjLocalizar = new LocalizacionModel1();
+
+        }
+     //   public String Getimage64() 
+       //{
+          // if (firma != null)
+           //{ 
+             //using (MemoryStream memory = new MemoryStream))
+              //  {
                   //  Stream stream = firma.GetStream();
                     //Stream.CopyTo(memory);
                     //byte[] fotobyte = memory.ToArray();
@@ -40,7 +45,7 @@ namespace PM2Examen2Grupo1.Views
 
         private async void btnfirmar_Clicked(object sender, EventArgs e)
         {
-            Stream image = await PadView.GetImageStreamAsync(SignatureImageFormat.Jpeg);
+        //    Stream image = await PadView.GetImageStreamAsync(SignatureImageFormat.Jpeg);
         }
 
         private void grabarvoz_Clicked(object sender, EventArgs e)
@@ -64,38 +69,41 @@ namespace PM2Examen2Grupo1.Views
 
         }
 
-        private async void Localizar()
-        {
-            try
+            private async void Localizar()
             {
-                var localizacion = await Geolocation.GetLastKnownLocationAsync();
-                if (localizacion == null)
+                try
                 {
-                    localizacion = await Geolocation.GetLocationAsync(new GeolocationRequest()
+                    var localizacion = await Geolocation.GetLastKnownLocationAsync();
+                    if (localizacion == null)
                     {
-                        DesiredAccuracy = GeolocationAccuracy.Medium,
-                        Timeout = TimeSpan.FromSeconds(25)
-                    });
+                        localizacion = await Geolocation.GetLocationAsync(new GeolocationRequest()
+                        {
+                            DesiredAccuracy = GeolocationAccuracy.Medium,
+                            Timeout = TimeSpan.FromSeconds(25)
+                        });
+                    }
+                    if (localizacion == null)
+                    {
+                        ObjLocalizar.Error = "No se donde estoy";
+                    }
+                    else
+                    {
+                        ObjLocalizar.Longitud = localizacion.Longitude;
+                        ObjLocalizar.Latitud = localizacion.Latitude;
+                    }
+
                 }
-                if (localizacion == null)
+                catch (Exception e)
                 {
-                    Error = "No se donde estoy";
-                }
-                else
-                {
-                    Longitud = localizacion.Longitude;
-                    Latitud = localizacion.Latitude;
+
+                    Console.WriteLine(e.StackTrace);
                 }
 
             }
-            catch (Exception e)
-            {
 
-                Console.WriteLine(e.StackTrace);
-            }
 
         }
 
-    }
+    
 
 }
