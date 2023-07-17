@@ -109,7 +109,7 @@ namespace PM2Examen2Grupo1.Views
                 var status = await Permissions.RequestAsync<Permissions.Microphone>();
                 var status2 = await Permissions.RequestAsync<Permissions.StorageRead>();
                 var status3 = await Permissions.RequestAsync<Permissions.StorageWrite>();
-                if (status != PermissionStatus.Granted & status2 != PermissionStatus.Granted & status3 != PermissionStatus.Granted)
+                if (status != PermissionStatus.Granted && status2 != PermissionStatus.Granted && status3 != PermissionStatus.Granted)
                 {
                     return; // si no tiene los permisos no avanza
                 }
@@ -140,7 +140,7 @@ namespace PM2Examen2Grupo1.Views
 
                     btngrabarvoz.Text = "Dejar de Grabar";
 
-                    reproducir = false;
+                 // reproducir = false;
                 }
             }
             catch (Exception ex)
@@ -156,9 +156,31 @@ namespace PM2Examen2Grupo1.Views
 
         private void btnsalvar_Clicked(object sender, EventArgs e)
         {
+            string audioFilePath = audioRecorderService.GetAudioFilePath();
 
+            // Verificar si se ha grabado algún audio
+            if (!string.IsNullOrEmpty(audioFilePath))
+            {
+                try
+                {
+                    // Guardar el archivo en el almacenamiento interno
+                    string destinationPath = Path.Combine(FileSystem.AppDataDirectory, "audio.mp3");
+                    File.Move(audioFilePath, destinationPath);
 
+                    // Mostrar un mensaje de éxito
+                    DisplayAlert("Éxito", "El audio se ha guardado correctamente.", "OK");
+                }
+                catch (Exception ex)
+                {
+                    DisplayAlert("Error", $"Ha ocurrido un error al guardar el audio: {ex.Message}", "OK");
+                }
+            }
+            else
+            {
+                DisplayAlert("Advertencia", "No se ha grabado ningún audio.", "OK");
+            }
         }
+
 
         private async void btnubicaciones_Clicked(object sender, EventArgs e)
         {

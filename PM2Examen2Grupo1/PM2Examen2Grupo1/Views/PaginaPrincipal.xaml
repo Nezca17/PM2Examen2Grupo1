@@ -24,33 +24,28 @@
                     BackgroundColor="White"
                     StrokeWidth="1"
                     StrokeColor="Black"
-                    HeightRequest="300"
+                    HeightRequest="100"
                     VerticalOptions="Center"
                     HorizontalOptions="CenterAndExpand"
                     IsVisible="true"/>
 
                     <Button Text="Firmar" x:Name="btnfirmar" Clicked="btnfirmar_Clicked"  BackgroundColor="#8eaa94" Margin="5"/>
                 </StackLayout>
-
+                    
                 <StackLayout>
                     <StackLayout Orientation="Vertical">
-                        <Label Text="Latitud actual:" TextColor="Black" FontSize="14" Margin="5"></Label>
-                        <Entry x:Name="txtlatitud" IsReadOnly="True" TextColor="Black" FontSize="16" Margin="5" HorizontalTextAlignment="Start" BackgroundColor="#8eaa94"></Entry>
+                        <Label Text="Latitud actual:" TextColor="Black" FontSize="14" Margin="1"></Label>
+                        <Entry x:Name="txtlatitud" IsReadOnly="True" TextColor="Black" FontSize="16" Margin="1" HorizontalTextAlignment="Start" BackgroundColor="#8eaa94"></Entry>
                         <Label Text="Longitud actual:" TextColor="Black" FontSize="14" Margin="5"></Label>
-                        <Entry x:Name="txtlongitud" IsReadOnly="True" TextColor="Black" FontSize="16" Margin="5" HorizontalTextAlignment="Start" BackgroundColor="#8eaa94"></Entry>
+                        <Entry x:Name="txtlongitud" IsReadOnly="True" TextColor="Black" FontSize="16" Margin="1" HorizontalTextAlignment="Start" BackgroundColor="#8eaa94"></Entry>
                     </StackLayout>
 
                     <StackLayout>
                         <StackLayout Orientation="Horizontal">
                             <Label Text="Describa la ubicación: " TextColor="Black" FontSize="14" Margin="5"></Label>
                         </StackLayout>
-                        <Editor x:Name="txtAdescripcion" HeightRequest="80" TextColor="Black" FontSize="16" Margin="5" BackgroundColor="#8eaa94"></Editor>
+                        <Editor x:Name="txtAdescripcion" HeightRequest="80" TextColor="Black" FontSize="16" Margin="1" BackgroundColor="#8eaa94"></Editor>
                     </StackLayout>
-                </StackLayout>
-
-                <StackLayout>
-               
-
                     <StackLayout>
                         <Label x:Name="TxtGrabacion"
                            HorizontalTextAlignment="Center"
