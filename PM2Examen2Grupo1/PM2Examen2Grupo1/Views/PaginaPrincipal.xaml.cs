@@ -14,6 +14,7 @@ using Xamarin.Essentials;
 using Plugin.Media;
 using Plugin.AudioRecorder;
 using System.IO;
+using Plugin.FilePicker.Abstractions;
 
 namespace PM2Examen2Grupo1.Views
 {
@@ -31,6 +32,11 @@ namespace PM2Examen2Grupo1.Views
         private AudioPlayer audioPlayer = new AudioPlayer();
         private bool reproducir = false;
 
+        string internalFilePath;
+        string internalStoragePath;
+        string selectedFolderPath;
+
+        
 
         public Command LocalizameCommand { get; set; }
         private LocalizacionModel1 ObjLocalizar;
@@ -106,6 +112,8 @@ namespace PM2Examen2Grupo1.Views
         {
             try
             {
+
+
                 var status = await Permissions.RequestAsync<Permissions.Microphone>();
                 var status2 = await Permissions.RequestAsync<Permissions.StorageRead>();
                 var status3 = await Permissions.RequestAsync<Permissions.StorageWrite>();
@@ -117,9 +125,10 @@ namespace PM2Examen2Grupo1.Views
                 if (audioRecorderService.IsRecording)
                 {
                     await audioRecorderService.StopRecording();
-
-
+                    //  await UserDialogs.Instance.AlertAsync("Guardando", "Aviso", "Aceptar");
+                    
                     audioPlayer.Play(audioRecorderService.GetAudioFilePath());
+
 
                     TxtGrabacion.Text = "No esta grabando";
 
@@ -128,10 +137,17 @@ namespace PM2Examen2Grupo1.Views
                     btngrabarvoz.Text = "Grabar audio";
 
                     reproducir = true;
+
+
                 }
                 else
                 {
+                    // await UserDialogs.Instance.AlertAsync("Grabando", "Aviso", "Aceptar");
+
                     await audioRecorderService.StartRecording();
+
+                    
+                    //await audioRecorderService.StartRecording();
 
 
                     TxtGrabacion.Text = "Esta grabando";
@@ -140,7 +156,7 @@ namespace PM2Examen2Grupo1.Views
 
                     btngrabarvoz.Text = "Dejar de Grabar";
 
-                    reproducir = false;
+                   // reproducir = false;
                 }
             }
             catch (Exception ex)
@@ -148,6 +164,9 @@ namespace PM2Examen2Grupo1.Views
                 await DisplayAlert("Alerta", ex.Message, "OK");
             }
         }
+
+
+
 
         private void detenervoz_Clicked(object sender, EventArgs e)
         {
@@ -165,6 +184,7 @@ namespace PM2Examen2Grupo1.Views
             await Navigation.PushAsync(new ListViews());
             
         }
+
 
         private async void Localizar()
         {

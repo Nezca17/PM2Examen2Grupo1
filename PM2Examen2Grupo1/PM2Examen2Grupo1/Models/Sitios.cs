@@ -9,17 +9,17 @@ namespace PM2Examen2Grupo1.Models
     {
 
         [JsonProperty("id")]
-        public int Id { get; set; }
-        [JsonProperty("Descripcion")]
-        public string Descripcion { get; set; }
+        public int id { get; set; }
+        [JsonProperty("descripcion")]
+        public string descripcion { get; set; }
         [JsonProperty("latitud")]
-        public string Latitud { get; set; }
+        public double Latitud { get; set; }
         [JsonProperty("longitud")]
-        public string Longitud { get; set; }
-        [JsonProperty("firma2")]
+        public double Longitud { get; set; }
+        [JsonProperty("firmadigital")]
         public byte[] FirmaDigital { get; set; }
         [JsonProperty("audioFile")]
-        public byte[] AudioFile { get; set; }
+        public byte[] audiofile { get; set; }
         [JsonProperty("firma")]
         public string firma { get; set; }
 
