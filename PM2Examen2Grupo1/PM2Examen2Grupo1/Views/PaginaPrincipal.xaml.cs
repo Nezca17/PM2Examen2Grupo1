@@ -125,7 +125,7 @@ namespace PM2Examen2Grupo1.Views
 
                     TxtGrabacion.TextColor = Color.Red;
 
-                    grabarvoz.Text = "Grabar audio";
+                    btngrabarvoz.Text = "Grabar audio";
 
                     reproducir = true;
                 }
@@ -138,7 +138,7 @@ namespace PM2Examen2Grupo1.Views
 
                     TxtGrabacion.TextColor = Color.Green;
 
-                    grabarvoz.Text = "Dejar de Grabar";
+                    btngrabarvoz.Text = "Dejar de Grabar";
 
                     //reproducir = false;
                 }
