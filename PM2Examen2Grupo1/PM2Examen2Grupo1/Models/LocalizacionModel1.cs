@@ -4,9 +4,9 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Text;
 
-namespace PM2Examen2Grupo1.Models
+namespace PM2Examen2Grupo1.Models 
 {
-    public class LocalizacionModel : INotifyPropertyChanged
+    public class LocalizacionModel1 : INotifyPropertyChanged
     {
         private string error;
 
@@ -48,7 +48,5 @@ namespace PM2Examen2Grupo1.Models
                 OnPropertyChanged();
             }
         }
-
     }
 }
-

@@ -7,7 +7,7 @@ using Xamarin.Forms;
 
 namespace PM2Examen2Grupo1.Views
 {
-    public class LocalizacionViewModel : LocalizacionModel
+    public class LocalizacionViewModel : LocalizacionModel1
     {
         public Command LocalizameCommand { get; set; }
         public LocalizacionViewModel()
