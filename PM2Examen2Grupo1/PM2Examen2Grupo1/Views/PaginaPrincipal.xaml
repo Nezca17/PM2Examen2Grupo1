@@ -35,16 +35,16 @@
                 <StackLayout>
                     <StackLayout Orientation="Vertical">
                         <Label Text="Latitud actual:" TextColor="Black" FontSize="14" Margin="5"></Label>
-                        <Entry x:Name="latitud" IsReadOnly="True" TextColor="Black" FontSize="16" Margin="5" HorizontalTextAlignment="Start" BackgroundColor="#8eaa94"></Entry>
+                        <Entry x:Name="txtlatitud" IsReadOnly="True" TextColor="Black" FontSize="16" Margin="5" HorizontalTextAlignment="Start" BackgroundColor="#8eaa94"></Entry>
                         <Label Text="Longitud actual:" TextColor="Black" FontSize="14" Margin="5"></Label>
-                        <Entry x:Name="longitud" IsReadOnly="True" TextColor="Black" FontSize="16" Margin="5" HorizontalTextAlignment="Start" BackgroundColor="#8eaa94"></Entry>
+                        <Entry x:Name="txtlongitud" IsReadOnly="True" TextColor="Black" FontSize="16" Margin="5" HorizontalTextAlignment="Start" BackgroundColor="#8eaa94"></Entry>
                     </StackLayout>
 
                     <StackLayout>
                         <StackLayout Orientation="Horizontal">
                             <Label Text="Describa la ubicación: " TextColor="Black" FontSize="14" Margin="5"></Label>
                         </StackLayout>
-                        <Editor x:Name="descripcion" HeightRequest="80" TextColor="Black" FontSize="16" Margin="5" BackgroundColor="#8eaa94"></Editor>
+                        <Editor x:Name="txtAdescripcion" HeightRequest="80" TextColor="Black" FontSize="16" Margin="5" BackgroundColor="#8eaa94"></Editor>
                     </StackLayout>
                 </StackLayout>
 
@@ -64,8 +64,8 @@
                            HorizontalTextAlignment="Center"
                            VerticalTextAlignment="Center"
                            TextColor="Black"/>
-                        <Button x:Name="grabarvoz" Clicked="grabarvoz_Clicked" Text="Grabar" BackgroundColor="#867e6d" Margin="5" CornerRadius="10" IsVisible="True"/>
-                        <Button x:Name="detenervoz" Clicked="detenervoz_Clicked" Text="Detener" BackgroundColor="RoyalBlue" Margin="5" CornerRadius="10" IsVisible="False"/>
+                        <Button x:Name="btngrabarvoz" Clicked="grabarvoz_Clicked" Text="Grabar" BackgroundColor="#867e6d" Margin="5" CornerRadius="10" IsVisible="True"/>
+                        <Button x:Name="btndetenervoz" Clicked="detenervoz_Clicked" Text="Detener" BackgroundColor="RoyalBlue" Margin="5" CornerRadius="10" IsVisible="False"/>
                     </StackLayout>
                 </StackLayout>
 

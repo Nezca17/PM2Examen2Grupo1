@@ -192,6 +192,9 @@ namespace PM2Examen2Grupo1.Views
                 {
                     ObjLocalizar.Longitud = localizacion.Longitude;
                     ObjLocalizar.Latitud = localizacion.Latitude;
+                    txtlatitud.Text=  localizacion.Latitude.ToString();
+                    txtlongitud.Text = localizacion.Longitude.ToString();
+
                 }
 
             }
