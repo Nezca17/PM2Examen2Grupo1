@@ -13,9 +13,9 @@ using Xamarin.Essentials;
 
 namespace PM2Examen2Grupo1.Views
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class PaginaPrincipal : ContentPage
-	{
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class PaginaPrincipal : ContentPage
+    {
         public Command LocalizameCommand { get; set; }
         private LocalizacionModel1 ObjLocalizar;
         public PaginaPrincipal()
@@ -26,26 +26,26 @@ namespace PM2Examen2Grupo1.Views
             ObjLocalizar = new LocalizacionModel1();
 
         }
-     //   public String Getimage64() 
-       //{
-          // if (firma != null)
-           //{ 
-             //using (MemoryStream memory = new MemoryStream))
-              //  {
-                  //  Stream stream = firma.GetStream();
-                    //Stream.CopyTo(memory);
-                    //byte[] fotobyte = memory.ToArray();
+        //   public String Getimage64() 
+        //{
+        // if (firma != null)
+        //{ 
+        //using (MemoryStream memory = new MemoryStream))
+        //  {
+        //  Stream stream = firma.GetStream();
+        //Stream.CopyTo(memory);
+        //byte[] fotobyte = memory.ToArray();
 
-                  //  String Base64 = Convert.ToBase64String(fotobyte);
-                  //  return Base64;
-               // }
-            //}
-           // return null;
-       // }
+        //  String Base64 = Convert.ToBase64String(fotobyte);
+        //  return Base64;
+        // }
+        //}
+        // return null;
+        // }
 
         private async void btnfirmar_Clicked(object sender, EventArgs e)
         {
-        //    Stream image = await PadView.GetImageStreamAsync(SignatureImageFormat.Jpeg);
+            //    Stream image = await PadView.GetImageStreamAsync(SignatureImageFormat.Jpeg);
         }
 
         private void grabarvoz_Clicked(object sender, EventArgs e)
@@ -69,41 +69,41 @@ namespace PM2Examen2Grupo1.Views
 
         }
 
-            private async void Localizar()
+        private async void Localizar()
+        {
+            try
             {
-                try
+                var localizacion = await Geolocation.GetLastKnownLocationAsync();
+                if (localizacion == null)
                 {
-                    var localizacion = await Geolocation.GetLastKnownLocationAsync();
-                    if (localizacion == null)
+                    localizacion = await Geolocation.GetLocationAsync(new GeolocationRequest()
                     {
-                        localizacion = await Geolocation.GetLocationAsync(new GeolocationRequest()
-                        {
-                            DesiredAccuracy = GeolocationAccuracy.Medium,
-                            Timeout = TimeSpan.FromSeconds(25)
-                        });
-                    }
-                    if (localizacion == null)
-                    {
-                        ObjLocalizar.Error = "No se donde estoy";
-                    }
-                    else
-                    {
-                        ObjLocalizar.Longitud = localizacion.Longitude;
-                        ObjLocalizar.Latitud = localizacion.Latitude;
-                    }
-
+                        DesiredAccuracy = GeolocationAccuracy.Medium,
+                        Timeout = TimeSpan.FromSeconds(25)
+                    });
                 }
-                catch (Exception e)
+                if (localizacion == null)
                 {
-
-                    Console.WriteLine(e.StackTrace);
+                    ObjLocalizar.Error = "No se donde estoy";
+                }
+                else
+                {
+                    ObjLocalizar.Longitud = localizacion.Longitude;
+                    ObjLocalizar.Latitud = localizacion.Latitude;
                 }
 
             }
+            catch (Exception e)
+            {
 
+                Console.WriteLine(e.StackTrace);
+            }
 
         }
 
-    
+
+    }
+
+
 
 }
