@@ -40,7 +40,7 @@ namespace PM2Examen2Grupo1.Controller
         {
             try
             {
-                var uri = new Uri(URL_SITIOS + "=?idSitios=" + id);
+                var uri = new Uri(URL_SITIOS + "?idSitios=" + id);
                 var result = await client.GetAsync(uri);
                 if (result.IsSuccessStatusCode)
                 {
@@ -84,7 +84,7 @@ namespace PM2Examen2Grupo1.Controller
                 var jsonObject = JsonConvert.SerializeObject(sitio);
                 var content = new StringContent(jsonObject, Encoding.UTF8, "application/json");
                 //var response = await client.PutAsync(requestUri, content);
-                var response = await client.PostAsync(requestUri, content);
+                var response = await client.PutAsync(requestUri, content);
                 if (response.IsSuccessStatusCode)
                 {
                     return true;
