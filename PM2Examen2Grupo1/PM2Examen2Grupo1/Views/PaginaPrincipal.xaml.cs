@@ -6,19 +6,24 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using PM2Examen2Grupo1.Models;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace PM2Examen2Grupo1.Views
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class PaginaPrincipal : LocalizacionModel
+	public partial class PaginaPrincipal 
     {
         public Command LocalizameCommand { get; set; }
+        private LocalizacionModel1 ObjLocalizar;
         public PaginaPrincipal ()
 		{
 			InitializeComponent ();
             LocalizameCommand = new Command(Localizar);
+
+            ObjLocalizar = new LocalizacionModel1();
+
         }
 
         private void btnfirmar_Clicked(object sender, EventArgs e)
@@ -61,12 +66,12 @@ namespace PM2Examen2Grupo1.Views
                 }
                 if (localizacion == null)
                 {
-                    Error = "No se donde estoy";
+                    ObjLocalizar.Error = "No se donde estoy";
                 }
                 else
                 {
-                    Longitud = localizacion.Longitude;
-                    Latitud = localizacion.Latitude;
+                    ObjLocalizar.Longitud = localizacion.Longitude;
+                    ObjLocalizar.Latitud = localizacion.Latitude;
                 }
 
             }
