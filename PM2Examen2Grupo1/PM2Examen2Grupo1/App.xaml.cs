@@ -9,8 +9,8 @@ namespace PM2Examen2Grupo1
         public App()
         {
             InitializeComponent();
-
-            MainPage = new Views.PaginaPrincipal();
+            MainPage = new NavigationPage(new Views.PaginaPrincipal());
+            // MainPage = new Views.PaginaPrincipal();
         }
 
         protected override void OnStart()
