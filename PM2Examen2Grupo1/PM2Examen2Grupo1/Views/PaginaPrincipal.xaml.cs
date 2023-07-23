@@ -159,7 +159,7 @@ namespace PM2Examen2Grupo1.Views
                 var status = await Permissions.RequestAsync<Permissions.Microphone>();
                 var status2 = await Permissions.RequestAsync<Permissions.StorageRead>();
                 var status3 = await Permissions.RequestAsync<Permissions.StorageWrite>();
-                if (status != PermissionStatus.Granted & status2 != PermissionStatus.Granted & status3 != PermissionStatus.Granted)
+                if (status != PermissionStatus.Granted && status2 != PermissionStatus.Granted && status3 != PermissionStatus.Granted)
                 {
                     return; // si no tiene los permisos no avanza
                 }

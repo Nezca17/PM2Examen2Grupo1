@@ -25,7 +25,7 @@ namespace PM2Examen2Grupo1.Views
         public ListViews()
         {
             InitializeComponent();
-            LoadData();
+           // LoadData();
         }
 
 
@@ -35,7 +35,7 @@ namespace PM2Examen2Grupo1.Views
 
             if (editando)
             {
-                LoadData();
+              //  LoadData();
 
                 editando = false;
 
@@ -78,7 +78,7 @@ namespace PM2Examen2Grupo1.Views
         {
             
         }
-
+        /*
         private async void btnDelete_Clicked (object sender, EventArgs e)
         {
             try
@@ -165,6 +165,7 @@ namespace PM2Examen2Grupo1.Views
                 Message("Error: ", ex.Message);
             }
         }
+        /*
         private async void DeleteSite(Sitios site)
         {
             var status = await DisplayAlert("Aviso", $"¿Desea eliminar el sitio con Descripcion: {site.descripcion}?", "SI", "NO");
