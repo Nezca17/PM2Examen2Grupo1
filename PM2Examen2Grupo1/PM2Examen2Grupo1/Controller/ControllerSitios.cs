@@ -10,7 +10,7 @@ namespace PM2Examen2Grupo1.Controller
 {
     public class ControllerSitios
     {
-        private static readonly string URL_SITIOS = "https://apex.oracle.com/pls/apex/pm22023/Get_Sitios/todos";
+        private static readonly string URL_SITIOS = "http://3.14.29.24/api_Rest/";
         private static HttpClient client = new HttpClient();
 
         public static async Task<List<Sitios>> GetAllSite()
@@ -18,7 +18,7 @@ namespace PM2Examen2Grupo1.Controller
             List<Sitios> listBooks = new List<Sitios>();
             try
             {
-                var uri = new Uri(URL_SITIOS);
+                var uri = new Uri(URL_SITIOS + "SitiosGetList.php");
                 var response = await client.GetAsync(uri);
                 if (response.IsSuccessStatusCode)
                 {
