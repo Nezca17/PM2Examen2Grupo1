@@ -10,7 +10,8 @@ using Xamarin.Essentials;
 using Plugin.Media;
 using Plugin.AudioRecorder;
 using System.IO;
-
+using PM2Examen2Grupo1.Converter;
+using System.Xml.Linq;
 
 namespace PM2Examen2Grupo1.Views
 {
@@ -18,16 +19,21 @@ namespace PM2Examen2Grupo1.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class PaginaPrincipal : ContentPage
     {
+        static string DEFAULTPATH = "/storage/emulated/0/Android/data/com.companyname.pm2examen2grupo1/files";
 
-        private AudioRecorderService audioRecorderService = new AudioRecorderService()
-        {
-            StopRecordingOnSilence = false,
-            StopRecordingAfterTimeout = false
-        };
+        string base64StringImagen;
+        string base64StringAudio;
 
         private AudioPlayer audioPlayer = new AudioPlayer();
         private bool reproducir = false;
-        static string DEFAULTPATH = "/storage/emulated/0/Android/data/com.companyname.ejercicio2_4/files";
+        private AudioRecorderService audioRecorderService = new AudioRecorderService()
+        {
+            //  FilePath = DEFAULTPATH,
+            StopRecordingOnSilence = false,
+            StopRecordingAfterTimeout = false
+          
+        };
+
 
 
         public Command LocalizameCommand { get; set; }
@@ -40,9 +46,8 @@ namespace PM2Examen2Grupo1.Views
 
                 ObjLocalizar = new LocalizacionModel1();
                 Localizar();
-           
-
-        }
+      
+             }
         //   public String Getimage64() 
         //{
         // if (firma != null)
@@ -80,18 +85,10 @@ namespace PM2Examen2Grupo1.Views
 
         }
 
-
-
-
-
-        private void detenervoz_Clicked(object sender, EventArgs e)
-        {
-         
-        }
-
-        private void btnsalvar_Clicked(object sender, EventArgs e)
+        private async void btnsalvar_Clicked(object sender, EventArgs e)
         {
 
+           await EnviarDatosABD();
 
         }
 
@@ -99,6 +96,86 @@ namespace PM2Examen2Grupo1.Views
         {
             await Navigation.PushAsync(new ListViews());
             
+        }
+
+        public async Task EnviarDatosABD()
+        {
+            try{
+                /*Guardando el Pad como Imagen*/
+                Stream firmaIMG = await PadView.GetImageStreamAsync(SignatureImageFormat.Jpeg, strokeColor: Color.Black, fillColor: Color.White);
+                string signName ="Prueba" + ".jpeg";
+
+                if (await OnSaveSignature(firmaIMG, signName))
+                {
+                    await DisplayAlert("Aviso", "Firma Guardada", "OK");
+                    ClearInputs();
+                }
+
+                /*Convertir el Audio en Base 64 preparandolo para enviarlo a la BD*/
+
+                string Audio = audioRecorderService.GetAudioFilePath(); // Reemplaza "ruta_del_archivo.txt" con la ruta real del archivo que deseas convertir
+                 base64StringAudio = Base64Converter.FileToBase64(Audio);
+
+                // Reemplaza "ruta_del_archivo.txt" con la ruta real del archivo que deseas convertir
+             
+
+
+
+                if (base64StringAudio != null)
+                {
+                    // Haz algo con la cadena Base64, como enviarla a través de una API o mostrarla en un cuadro de texto, etc.
+
+
+                }
+            }
+            catch(Exception ex)
+            {
+                await DisplayAlert("Alerta", ex.Message, "OK");
+                System.Diagnostics.Debug.WriteLine(ex.Message);
+
+            }
+        }
+
+        private void ClearInputs()
+        {
+            PadView.Clear();
+            txtAdescripcion.Text = "";
+           
+        }
+
+        private async Task<bool> OnSaveSignature(Stream bitmap, string filename)
+        {
+            var file = Path.Combine(DEFAULTPATH, filename);
+            try
+            {
+
+                 base64StringImagen = Base64Converter.FileToBase64(file);
+
+
+                using (var dest = File.OpenWrite(file))
+                {
+                    await bitmap.CopyToAsync(dest);
+                }
+
+                var mStream = (MemoryStream)bitmap;
+                byte[] data = mStream.ToArray();
+
+                /* var datosFirma = new Firma
+                 {
+                     id = 0,
+                     name = txbName.Text,
+                     descrip = txbDescrip.Text,
+                     sign = data
+                 };
+                 await App.DBase.guardarFirma(datosFirma);*/
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
+
+            return true;
         }
 
 
@@ -170,7 +247,7 @@ namespace PM2Examen2Grupo1.Views
                     //audioRecorderService.set
                     //audioRecorderService.FilePath = "/storage/emulated/0/Android/data/com.companyname.ejercicio2_4/files/";
                     await audioRecorderService.StopRecording();
-                    await UserDialogs.Instance.AlertAsync("Guardando", $"Aviso{audioRecorderService.GetAudioFilePath()}", "Aceptar");
+                    await UserDialogs.Instance.AlertAsync("Aviso", $"{audioRecorderService.GetAudioFilePath()}", "Aceptar");
 
 
 
@@ -189,6 +266,9 @@ namespace PM2Examen2Grupo1.Views
                 else
                 {
                     // await UserDialogs.Instance.AlertAsync("Grabando", "Aviso", "Aceptar");
+
+                   // audioRecorderService.FilePath = DEFAULTPATH;
+
 
                     await audioRecorderService.StartRecording();
 
@@ -235,8 +315,8 @@ namespace PM2Examen2Grupo1.Views
         {
             Stream audioFile = audioRecorderService.GetAudioFileStream();
 
-            //var mStream = new MemoryStream(File.ReadAllBytes(audioRecorderService.GetAudioFilePath()));
-            //var mStream = (MemoryStream)audioFile;
+            var mStream = new MemoryStream(File.ReadAllBytes(audioRecorderService.GetAudioFilePath()));
+            var mStreama = (MemoryStream)audioFile;
 
             Byte[] bytes = ReadFully(audioFile);
             return bytes;

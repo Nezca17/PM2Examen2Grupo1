@@ -52,9 +52,8 @@
                            VerticalTextAlignment="Center"
                            TextColor="Black"/>
                         <Button x:Name="btngrabarvoz" Clicked="grabarvoz_Clicked" Text="Grabar" BackgroundColor="#867e6d" Margin="5" CornerRadius="10" IsVisible="True"/>
-                        <Button x:Name="btnEscucharAudio" Clicked="btnEscuchar_Clicked" Text="Escuchar" BackgroundColor="#867e6d" Margin="5" CornerRadius="10" IsVisible="false"/>
-                        <Button x:Name="btndetenervoz" Clicked="detenervoz_Clicked" Text="Detener" BackgroundColor="RoyalBlue" Margin="5" CornerRadius="10" IsVisible="False"/>
-                    </StackLayout>
+                        <Button x:Name="btnEscucharAudio" Clicked="btnEscuchar_Clicked" Text="Escuchar" BackgroundColor="#867e6d" Margin="5" CornerRadius="10" IsVisible="true"/>
+                        </StackLayout>
                 </StackLayout>
 
                 <StackLayout Orientation="Horizontal">

@@ -9,9 +9,9 @@ namespace PM2Examen2Grupo1.Models
     {
 
         [JsonProperty("id")]
-        public int id { get; set; }
+        public int Id { get; set; }
         [JsonProperty("descripcion")]
-        public string descripcion { get; set; }
+        public string Descripcion { get; set; }
         [JsonProperty("latitud")]
         public double Latitud { get; set; }
         [JsonProperty("longitud")]
@@ -19,7 +19,7 @@ namespace PM2Examen2Grupo1.Models
         [JsonProperty("firmadigital")]
         public byte[] FirmaDigital { get; set; }
         [JsonProperty("audioFile")]
-        public byte[] audiofile { get; set; }
+        public byte[] Audiofile { get; set; }
         [JsonProperty("firma")]
         public string firma { get; set; }
 
