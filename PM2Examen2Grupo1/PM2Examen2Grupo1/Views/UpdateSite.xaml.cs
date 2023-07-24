@@ -136,7 +136,7 @@ namespace PM2Examen2Grupo1.Views
 
             if (Image == null)
             {
-           //     Image = sitio.Image;
+                Image = sitio.foto;
             }
 
            if (string.IsNullOrEmpty(txtLatitude.Text) || string.IsNullOrEmpty(txtLongitude.Text))
@@ -164,6 +164,7 @@ namespace PM2Examen2Grupo1.Views
             }
             else
             {
+
 
                 var length = ConvertAudioToByteArray().Length;
                 if (length > 1500000)
@@ -271,13 +272,23 @@ namespace PM2Examen2Grupo1.Views
         #region Metodos Utiles
         private Byte[] ConvertAudioToByteArray()
         {
-            Stream audioFile = audioRecorderService.GetAudioFileStream();
+            try {
+                Stream audioFile = audioRecorderService.GetAudioFileStream();
 
-            var mStream = new MemoryStream(File.ReadAllBytes(audioRecorderService.GetAudioFilePath()));
-             mStream = (MemoryStream)audioFile;
+                var mStream = new MemoryStream(File.ReadAllBytes(audioRecorderService.GetAudioFilePath()));
+            
 
-            Byte[] bytes = ReadFully(audioFile);
-            return bytes;
+                Byte[] bytes = ReadFully(audioFile);
+                return bytes;
+            }
+            catch (Exception ex) {
+
+                DisplayAlert("Guardar",$"{ex}","Ok");
+
+                return null;
+            }
+
+
         }
 
         private Byte[] ConvertImageToByteArray()

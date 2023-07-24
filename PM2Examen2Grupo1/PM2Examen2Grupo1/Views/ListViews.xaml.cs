@@ -104,7 +104,18 @@ namespace PM2Examen2Grupo1.Views
 
         private void PlayButton_Clicked(object sender, EventArgs e)
         {
+            if (Site != null)
+            {
 
+                playbyte.Play(Site.audio);
+
+            }
+            else
+            {
+
+                DisplayAlert("Aviso", "Debe Seleccionar un Sitio", "Ok");
+
+            }
 
 
         }
@@ -115,6 +126,13 @@ namespace PM2Examen2Grupo1.Views
 
             try
             {
+                var current = Connectivity.NetworkAccess;
+
+                if (current != NetworkAccess.Internet)
+                {
+                    Message("Advertencia", "Actualmente no cuenta con acceso a internet");
+                    return;
+                }
                 var request = new HttpRequestMessage();
                 request.RequestUri = new Uri("http://3.14.29.24/api_Rest/SitiosGetList.php");
                 request.Method = HttpMethod.Get;
@@ -190,7 +208,7 @@ namespace PM2Examen2Grupo1.Views
                 {
                     //Delete
                     var sit = Site;
-                    DeleteSite(Site);
+                    DeleteSite(sit);
                 }
                 else
                 {
@@ -207,14 +225,21 @@ namespace PM2Examen2Grupo1.Views
                 Message("Error:", ex.Message);
             }
         }
-         private void btnViewMapa_Clicked(Object sender, EventArgs e)
-        {
-
-        }
 
         private void btnViewListen_Clicked(Object sender, EventArgs e)
         {
+            if (Site != null)
+            {
 
+                playbyte.Play(Site.audio);
+
+            }
+            else
+            {
+
+                DisplayAlert("Aviso", "Debe Seleccionar un Sitio", "Ok");
+
+            }
         }
 
         private void btnViewListen_Clicked_1(object sender, EventArgs e)
@@ -236,39 +261,6 @@ namespace PM2Examen2Grupo1.Views
             
         }
 
-
-
-        /* private async void LoadData()
-         {
-
-             try
-             {
-                 await Task.Delay(1000);
-
-                 UserDialogs.Instance.ShowLoading("Cargando", MaskType.Gradient);
-
-                 listSites.ItemsSource = await ControllerSitios.GetAllSite();
-
-                 await Task.Delay(500);
-                 UserDialogs.Instance.HideLoading();
-               //  Message("Advertencia", listSites.ItemsSource.ToString());
-
-                 var current = Connectivity.NetworkAccess;
-
-                 if (current != NetworkAccess.Internet)
-                 {
-                     Message("Advertencia", "Actualmente no cuenta con acceso a internet");
-                     return;
-                 }
-             }
-             catch (Exception ex)
-             {
-                 UserDialogs.Instance.HideLoading();
-                 await Task.Delay(500);
-
-                 Message("Error: ", ex.Message);
-             }
-         }*/
 
         private async void DeleteSite(Sitios site)
         {
@@ -305,6 +297,39 @@ namespace PM2Examen2Grupo1.Views
             await DisplayAlert(title, message, "OK");
         }
 
+        private void btnViewMapa_Clicked_1(object sender, EventArgs e)
+        {
+            openMapa();
+        }
+
+        public async void openMapa() {
+            try {
+
+                if (Site != null) {
+
+                    var location = new Location(Site.Latitud, Site.Longitud);
+                    var option = new MapLaunchOptions { Name = "Sitios",
+                        NavigationMode = NavigationMode.Driving
+                    };
+
+                    await Map.OpenAsync(location, option);
+
+                }
+                else
+                {
+
+                  await DisplayAlert("Aviso", "No ha Seleccionado un Sitio", "Ok");
+                }
+
+
+
+            } catch(Exception ex) { 
+            
+            
+            }
+
+
+        }
 
     }
 

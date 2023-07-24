@@ -101,7 +101,7 @@
                             CornerRadius="25"
                             Grid.Row="1"
                             HeightRequest="40"
-                            
+                            Clicked="btnViewMapa_Clicked_1"
                             />
 
                     <Button x:Name="btnViewListen"
