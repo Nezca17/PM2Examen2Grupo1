@@ -16,6 +16,9 @@ using Xamarin.Forms.Xaml;
 using Android.App;
 using PM2Examen2Grupo1.Converter;
 using System.Collections.ObjectModel;
+using System.Globalization;
+using System.IO;
+using PM2Examen2Grupo1.Services;
 
 namespace PM2Examen2Grupo1.Views
 {
@@ -25,6 +28,8 @@ namespace PM2Examen2Grupo1.Views
         public Sitios Site;
         byte[] audioBytes;
         byte[] FotoBytes;
+
+        PlayService playbyte = new PlayService();
 
         bool editando = false;
         Base64Converter converter = new Base64Converter();
@@ -70,14 +75,13 @@ namespace PM2Examen2Grupo1.Views
         private void Actualizar_Clicked(object sender, EventArgs e)
         {
 
+            if (Site == null) {
+
+                new NavigationPage(new UpdateSite(Site));
+
+            }
+
            
-            Sitios Selectedsitio = new Sitios { 
-            
-               
-
-
-            };
-
 
 
            // new NavigationPage(new Views.UpdateSite(listSites.ItemSelected));
@@ -149,26 +153,27 @@ namespace PM2Examen2Grupo1.Views
                 await DisplayAlert("Äviso", $"{ex}", "Ok");
             }
 
-        } 
+        }
 
 
 
 
+        private void listSites_ItemTapped(object sender, ItemTappedEventArgs e)
+        {
+            try
+            {
+                Site = e.Item as Sitios;
+
+                
+            }
+            catch (Exception ex)
+            {
+                Message("Error:", ex.Message);
+            }
+        }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-        /*
+        
         private async void btnDelete_Clicked (object sender, EventArgs e)
         {
             try
@@ -179,7 +184,7 @@ namespace PM2Examen2Grupo1.Views
                     return;
                 }
 
-                bool response = await Application.Current.MainPage.DisplayAlert("Aviso", "Seleccione la accion que desea realizar", "Eliminar", "Actualizar");
+                bool response = await DisplayAlert("Aviso", "Seleccione la accion que desea realizar", "Eliminar", "Actualizar");
 
                 if (response)
                 {
@@ -212,63 +217,72 @@ namespace PM2Examen2Grupo1.Views
 
         }
 
-        private void listSites_ItemTapped (object sender, ItemTappedEventArgs e)
+        private void btnViewListen_Clicked_1(object sender, EventArgs e)
         {
-            try
+            if(Site != null)
             {
-                Site = e.Item as Sitios;
+               
+                playbyte.Play(Site.audio);
+
             }
-            catch (Exception ex)
+            else
             {
-                Message("Error:", ex.Message);
+
+                DisplayAlert("Aviso", "Debe Seleccionar un Sitio", "Ok");
+
             }
+
+
+            
         }
 
-        private async void LoadData()
-        {
 
-            try
-            {
-                await Task.Delay(1000);
 
-                UserDialogs.Instance.ShowLoading("Cargando", MaskType.Gradient);
+        /* private async void LoadData()
+         {
 
-                listSites.ItemsSource = await ControllerSitios.GetAllSite();
+             try
+             {
+                 await Task.Delay(1000);
 
-                await Task.Delay(500);
-                UserDialogs.Instance.HideLoading();
-              //  Message("Advertencia", listSites.ItemsSource.ToString());
+                 UserDialogs.Instance.ShowLoading("Cargando", MaskType.Gradient);
 
-                var current = Connectivity.NetworkAccess;
+                 listSites.ItemsSource = await ControllerSitios.GetAllSite();
 
-                if (current != NetworkAccess.Internet)
-                {
-                    Message("Advertencia", "Actualmente no cuenta con acceso a internet");
-                    return;
-                }
-            }
-            catch (Exception ex)
-            {
-                UserDialogs.Instance.HideLoading();
-                await Task.Delay(500);
+                 await Task.Delay(500);
+                 UserDialogs.Instance.HideLoading();
+               //  Message("Advertencia", listSites.ItemsSource.ToString());
 
-                Message("Error: ", ex.Message);
-            }
-        }
-        /*
+                 var current = Connectivity.NetworkAccess;
+
+                 if (current != NetworkAccess.Internet)
+                 {
+                     Message("Advertencia", "Actualmente no cuenta con acceso a internet");
+                     return;
+                 }
+             }
+             catch (Exception ex)
+             {
+                 UserDialogs.Instance.HideLoading();
+                 await Task.Delay(500);
+
+                 Message("Error: ", ex.Message);
+             }
+         }*/
+
         private async void DeleteSite(Sitios site)
         {
-            var status = await DisplayAlert("Aviso", $"¿Desea eliminar el sitio con Descripcion: {site.descripcion}?", "SI", "NO");
+            var status = await DisplayAlert("Aviso", $"¿Desea eliminar el sitio con Descripcion: {site.Descripcion}?", "SI", "NO");
 
             if (status)
             {
-                var result = await ControllerSitios.DeleteSite(site.id.ToString());
+                var result = await ControllerSitios.DeleteSite(site.Id.ToString());
 
                 if (result)
                 {
-                    //Message("Aviso", "El sitio fue eliminado correctamente");
+                    Message("Aviso", "El sitio fue eliminado correctamente");
                     Site = null;
-                    LoadData();
+                    llamarAPi();
 
                     Site = null;
                 }
@@ -278,16 +292,19 @@ namespace PM2Examen2Grupo1.Views
                 }
             }
         }
-     /*   public UpdateSite(Sitios sitio)
+
+
+        public void UpdateSite(Sitios sitio)
         {
             InitializeComponent();
-           // this.sitio = sitio;
-        }*/
+            this.Site = sitio;
+        }
 
         private async void Message(string title, string message)
         {
             await DisplayAlert(title, message, "OK");
         }
+
 
     }
 

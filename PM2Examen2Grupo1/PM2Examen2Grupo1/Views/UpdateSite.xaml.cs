@@ -13,6 +13,7 @@ using System.Threading.Tasks;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using PM2Examen2Grupo1.Converter;
 
 namespace PM2Examen2Grupo1.Views
 {
@@ -31,6 +32,9 @@ namespace PM2Examen2Grupo1.Views
         MediaFile FileFoto = null;
         Sitios sitio;
 
+        Base64Converter converter64 = new Base64Converter();
+
+
         private bool reproducir = false;
 
         public UpdateSite(Sitios sitio)
@@ -47,7 +51,7 @@ namespace PM2Examen2Grupo1.Views
 
        void LoadData()
         {
-          //  imgFoto.Source = GetImageResourseFromBytes(sitio.Image);
+            imgFoto.Source = GetImageResourseFromBytes(sitio.foto);
             txtLatitude.Text = sitio.Latitud.ToString();
             txtLongitude.Text = sitio.Longitud.ToString();
             txtDescription.Text = sitio.Descripcion;
@@ -77,6 +81,7 @@ namespace PM2Examen2Grupo1.Views
 
                //     imgFoto.Source = ImageSource.FromStream(() => { return FileFoto.GetStream(); });
                     Image = File.ReadAllBytes(FileFoto.Path);
+
                 }
                 else
                 {
@@ -155,7 +160,7 @@ namespace PM2Examen2Grupo1.Views
 
             if (!reproducir)
             {
-              //  audio = sitio.Audiofile;
+                audio = sitio.audio;
             }
             else
             {
@@ -180,9 +185,9 @@ namespace PM2Examen2Grupo1.Views
                     Latitud = double.Parse(txtLatitude.Text),
                     Longitud = double.Parse(txtLongitude.Text),
                     Descripcion = txtDescription.Text,
-                //    Image = Image,
-                 //   Audiofile = audio
-                    //pathImage = FileFoto.Path
+                    Firmadigital = Convert.ToBase64String(Image),
+                    Audiofile = Convert.ToBase64String(audio),
+                   // pathImage = FileFoto.Path
                 };
 
                 var result = await ControllerSitios.UpdateSitio(sitio);
@@ -258,7 +263,7 @@ namespace PM2Examen2Grupo1.Views
         }
         private void clearComp()
         {
-          //  imgFoto.Source = "imgMuestra.png";
+          //imgFoto.Source = "imgMuestra.png";
             txtDescription.Text = "";
             Image = null;
             getLatitudeAndLongitude();
@@ -269,7 +274,7 @@ namespace PM2Examen2Grupo1.Views
             Stream audioFile = audioRecorderService.GetAudioFileStream();
 
             var mStream = new MemoryStream(File.ReadAllBytes(audioRecorderService.GetAudioFilePath()));
-            //var mStream = (MemoryStream)audioFile;
+             mStream = (MemoryStream)audioFile;
 
             Byte[] bytes = ReadFully(audioFile);
             return bytes;
