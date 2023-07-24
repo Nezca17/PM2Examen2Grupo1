@@ -15,6 +15,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Android.App;
 using PM2Examen2Grupo1.Converter;
+using System.Collections.ObjectModel;
 
 namespace PM2Examen2Grupo1.Views
 {
@@ -68,7 +69,18 @@ namespace PM2Examen2Grupo1.Views
 
         private void Actualizar_Clicked(object sender, EventArgs e)
         {
+
            
+            Sitios Selectedsitio = new Sitios { 
+            
+               
+
+
+            };
+
+
+
+           // new NavigationPage(new Views.UpdateSite(listSites.ItemSelected));
         }
 
         private void VerMapa_Clicked(object sender, EventArgs e)

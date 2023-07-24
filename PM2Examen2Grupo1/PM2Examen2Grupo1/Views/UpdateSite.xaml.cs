@@ -128,6 +128,7 @@ namespace PM2Examen2Grupo1.Views
             }
 
             Byte[] audio;
+
             if (Image == null)
             {
            //     Image = sitio.Image;
