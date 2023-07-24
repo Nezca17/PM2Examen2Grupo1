@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace PM2Examen2Grupo1.Converter
 {
@@ -21,10 +22,37 @@ namespace PM2Examen2Grupo1.Converter
             }
             catch (Exception ex)
             {
-                // Manejo de errores (puedes personalizar el manejo según tus necesidades)
+                // Manejo de errores 
                 Console.WriteLine("Error al convertir el archivo a Base64: " + ex.Message);
                 return null;
             }
+        }
+
+        public async Task<byte[]> ConvertBase64ToImage(string base64String, string outputFilePath)
+        {
+
+            try {
+                // Convertir el dato Base64 a bytes
+                byte[] imageBytes =  Convert.FromBase64String(base64String);
+
+                // Guardar los bytes como archivo de imagen
+               // Byte[] archivoNuevo =  File.WriteAllBytes(outputFilePath, imageBytes);
+
+                return imageBytes;
+            } catch (Exception ex)
+            {
+                // Manejo de errores 
+                Console.WriteLine("Error al convertir el archivo a Base64: " + ex.Message);
+                return null;
+            }
+          
+        }
+
+        public byte[] ConvertBase64ToByteArray(string base64String)
+        {
+            // Convertir el dato Base64 a bytes
+            byte[] fileBytes = Convert.FromBase64String(base64String);
+            return fileBytes;
         }
     }
 }

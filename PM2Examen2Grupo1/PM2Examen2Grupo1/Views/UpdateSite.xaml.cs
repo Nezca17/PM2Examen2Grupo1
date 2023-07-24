@@ -50,7 +50,7 @@ namespace PM2Examen2Grupo1.Views
           //  imgFoto.Source = GetImageResourseFromBytes(sitio.Image);
             txtLatitude.Text = sitio.Latitud.ToString();
             txtLongitude.Text = sitio.Longitud.ToString();
-            txtDescription.Text = sitio.descripcion;
+            txtDescription.Text = sitio.Descripcion;
         }
         private async void TapGestureRecognizer_Tapped(object sender, EventArgs e)
         {
@@ -154,7 +154,7 @@ namespace PM2Examen2Grupo1.Views
 
             if (!reproducir)
             {
-                audio = sitio.audiofile;
+              //  audio = sitio.Audiofile;
             }
             else
             {
@@ -175,12 +175,12 @@ namespace PM2Examen2Grupo1.Views
 
                 var sitio = new Sitios()
                 {
-                    id = this.sitio.id,
+                    Id = this.sitio.Id,
                     Latitud = double.Parse(txtLatitude.Text),
                     Longitud = double.Parse(txtLongitude.Text),
-                    descripcion = txtDescription.Text,
+                    Descripcion = txtDescription.Text,
                 //    Image = Image,
-                    audiofile = audio
+                 //   Audiofile = audio
                     //pathImage = FileFoto.Path
                 };
 

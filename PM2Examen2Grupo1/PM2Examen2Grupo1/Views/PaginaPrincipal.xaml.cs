@@ -12,6 +12,10 @@ using Plugin.AudioRecorder;
 using System.IO;
 using PM2Examen2Grupo1.Converter;
 using System.Xml.Linq;
+using Android.Util;
+using System.Net.Http;
+using Newtonsoft.Json;
+using System.Text;
 
 namespace PM2Examen2Grupo1.Views
 {
@@ -48,22 +52,6 @@ namespace PM2Examen2Grupo1.Views
                 Localizar();
       
              }
-        //   public String Getimage64() 
-        //{
-        // if (firma != null)
-        //{ 
-        //using (MemoryStream memory = new MemoryStream))
-        //  {
-        //  Stream stream = firma.GetStream();
-        //Stream.CopyTo(memory);
-        //byte[] fotobyte = memory.ToArray();
-
-        //  String Base64 = Convert.ToBase64String(fotobyte);
-        //  return Base64;
-        // }
-        //}
-        // return null;
-        // }
 
 
         private async void btnfirmar_Clicked(object sender, EventArgs e)
@@ -108,7 +96,7 @@ namespace PM2Examen2Grupo1.Views
                 if (await OnSaveSignature(firmaIMG, signName))
                 {
                     await DisplayAlert("Aviso", "Firma Guardada", "OK");
-                    ClearInputs();
+                  //  ClearInputs();
                 }
 
                 /*Convertir el Audio en Base 64 preparandolo para enviarlo a la BD*/
@@ -118,15 +106,56 @@ namespace PM2Examen2Grupo1.Views
 
                 // Reemplaza "ruta_del_archivo.txt" con la ruta real del archivo que deseas convertir
              
-
-
-
-                if (base64StringAudio != null)
+                if (base64StringAudio != null && base64StringImagen != null)
                 {
                     // Haz algo con la cadena Base64, como enviarla a través de una API o mostrarla en un cuadro de texto, etc.
 
 
+                    Sitios Newsitio = new Sitios { 
+                        
+                        Descripcion = txtAdescripcion.Text,
+                        Longitud = Double.Parse(txtlongitud.Text),
+                        Latitud = Double.Parse(txtlatitud.Text),
+                        Audiofile = base64StringAudio,
+                        Firmadigital = base64StringImagen
+
+                    };
+
+                    Uri RequestUri = new Uri("http://3.14.29.24/api_Rest/SitiosCreate.php");
+                    var client = new HttpClient();
+
+                    var json = JsonConvert.SerializeObject(Newsitio);
+                    var contentJson = new StringContent(json,Encoding.UTF8, "applicationn/json");
+
+                    var response = await client.PostAsync(RequestUri, contentJson);
+                    
+                    if(response.StatusCode== System.Net.HttpStatusCode.OK)
+                    {
+
+                        await DisplayAlert("Datos", "Se inserto correctamente", "Ok");
+                        ClearInputs();
+
+                    }
+                    else
+                    {
+                        await DisplayAlert("Datos", "Ocurrio un error al insertar, revisar datos", "Ok");
+
+                    }
+
+
                 }
+                else
+                {
+
+                  await DisplayAlert("Aviso", "Ocurrio un error al convertir los datos para enviarlos", "ok");
+
+                }
+
+
+
+
+
+
             }
             catch(Exception ex)
             {

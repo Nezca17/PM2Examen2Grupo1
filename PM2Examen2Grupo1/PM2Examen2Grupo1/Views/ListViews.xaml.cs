@@ -7,10 +7,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using System.Net;
+using System.Net.Http;
+using Newtonsoft.Json;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using Android.App;
+using PM2Examen2Grupo1.Converter;
 
 namespace PM2Examen2Grupo1.Views
 {
@@ -18,14 +22,17 @@ namespace PM2Examen2Grupo1.Views
     public partial class ListViews : ContentPage
     {
         public Sitios Site;
+        byte[] audioBytes;
+        byte[] FotoBytes;
 
         bool editando = false;
+        Base64Converter converter = new Base64Converter();
 
         private readonly AudioPlayer audioPlayer = new AudioPlayer();
         public ListViews()
         {
             InitializeComponent();
-           // LoadData();
+            llamarAPi();
         }
 
 
@@ -35,7 +42,7 @@ namespace PM2Examen2Grupo1.Views
 
             if (editando)
             {
-              //  LoadData();
+                llamarAPi();
 
                 editando = false;
 
@@ -61,7 +68,7 @@ namespace PM2Examen2Grupo1.Views
 
         private void Actualizar_Clicked(object sender, EventArgs e)
         {
-            // Implementa el código para actualizar aquí
+           
         }
 
         private void VerMapa_Clicked(object sender, EventArgs e)
@@ -78,6 +85,77 @@ namespace PM2Examen2Grupo1.Views
         {
             
         }
+
+        private void PlayButton_Clicked(object sender, EventArgs e)
+        {
+
+
+
+        }
+
+
+        public async void llamarAPi()
+        {
+
+            try
+            {
+                var request = new HttpRequestMessage();
+                request.RequestUri = new Uri("http://3.14.29.24/api_Rest/SitiosGetList.php");
+                request.Method = HttpMethod.Get;
+                request.Headers.Add("Accept", "application/json");
+
+                var cliente = new HttpClient();
+                HttpResponseMessage response = await cliente.SendAsync(request);
+                if (response.StatusCode == HttpStatusCode.OK)
+                {
+                    string content = await response.Content.ReadAsStringAsync();
+
+                    
+                   var resultado = JsonConvert.DeserializeObject<List<Sitios>>(content);
+
+
+                    foreach (var sitio in resultado)
+                    {
+                        sitio.audio = converter.ConvertBase64ToByteArray(sitio.Audiofile);
+                        sitio.foto = converter.ConvertBase64ToByteArray(sitio.Firmadigital);
+
+  
+                     };
+                    //Envio de los datos a un ListView 
+                    listSites.ItemsSource = resultado;
+                        
+
+
+                 }
+
+                    
+
+                
+            }
+            catch(Exception ex)
+            {
+                await DisplayAlert("Äviso", $"{ex}", "Ok");
+            }
+
+        } 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         /*
         private async void btnDelete_Clicked (object sender, EventArgs e)
         {
